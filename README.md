@@ -188,4 +188,9 @@ var db = await Database.getDatabase();
     List<UserData> users = await db.getAllUsers();
 ```
 
+## Screenshots
+<img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112634.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112722.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112651.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112672.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2013%20Pro%20-%202021-12-10%20at%2011.17.10.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112680.png" style="height:500px;"><img src="https://github.com/kapilmhr/registration/blob/main/screenshots/Screenshot_1639112750.png" style="height:500px;">
+
+
+
 
