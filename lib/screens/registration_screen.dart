@@ -74,7 +74,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     fillColor: Colors.white,
                     labelStyle: TextStyle(color: Colors.black54),
                   ),
-                  maxLength: 16,
                   validator: (value) =>
                       value!.isEmpty ? 'First Name cannot be empty' : null,
                   keyboardType: TextInputType.number,
@@ -88,7 +87,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     fillColor: Colors.white,
                     labelStyle: TextStyle(color: Colors.black54),
                   ),
-                  maxLength: 16,
                   validator: (value) =>
                       value!.isEmpty ? 'Last Name cannot be empty' : null,
                   keyboardType: TextInputType.number,
@@ -115,7 +113,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     fillColor: Colors.white,
                     labelStyle: TextStyle(color: Colors.black54),
                   ),
-                  maxLength: 16,
                   validator: (value) =>
                       value!.isEmpty ? 'Date of Birth cannot be empty' : null,
                   keyboardType: TextInputType.number,
@@ -130,7 +127,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fillColor: Colors.white,
                           labelStyle: TextStyle(color: Colors.black54),
                         ),
-                        maxLength: 16,
                         validator: (value) => age > 18
                             ? (value!.isEmpty
                                 ? 'Passport Number cannot be empty'
@@ -148,7 +144,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     fillColor: Colors.white,
                     labelStyle: TextStyle(color: Colors.black54),
                   ),
-                  maxLength: 16,
                   validator: (value) =>
                       value!.isNotEmpty ? Utils().validateEmail(value) : null,
                   keyboardType: TextInputType.number,
