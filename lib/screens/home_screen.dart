@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 100,
                       ),
-                      Text("No Data", style: TextStyle(fontSize: 20)),
+                      Text("No any users", style: TextStyle(fontSize: 20)),
                       MaterialButton(
                         color: Colors.blueAccent,
                         onPressed: () {
@@ -64,9 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   var user = userList[index];
                   return Container(
                     child: ListTile(
-                      onTap: () {
-                        print(user.id);
-                      },
                       title: Text("${user.firstName} ${user.lastName}"),
                       subtitle: Text("${user.date}"),
                       leading: Text("${index + 1}"),

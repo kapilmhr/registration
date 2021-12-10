@@ -82,7 +82,7 @@ class _$UserDatabase extends UserDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `UserData` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `firstName` TEXT NOT NULL, `lastName` TEXT NOT NULL, `imei` TEXT NOT NULL, `date` TEXT NOT NULL, `email` TEXT NOT NULL, `passportNo` TEXT NOT NULL, `image` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `UserData` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `firstName` TEXT NOT NULL, `lastName` TEXT NOT NULL, `imei` TEXT NOT NULL, `date` TEXT NOT NULL, `email` TEXT NOT NULL, `passportNo` TEXT NOT NULL, `image` TEXT NOT NULL, `platform` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -110,7 +110,10 @@ class _$UserDao extends UserDao {
                   'date': item.date,
                   'email': item.email,
                   'passportNo': item.passportNo,
-                  'image': item.image
+                  'image': item.image,
+                  'platform': item.platform,
+                  'latitude': item.latitude,
+                  'longitude': item.longitude
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -132,7 +135,10 @@ class _$UserDao extends UserDao {
             row['date'] as String,
             row['email'] as String,
             row['passportNo'] as String,
-            row['image'] as String));
+            row['image'] as String,
+            row['platform'] as String,
+            row['latitude'] as double,
+            row['longitude'] as double));
   }
 
   @override

@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.17.0
   floor: ^1.2.0
   device_information: ^0.0.4
+  geolocator: ^8.0.0
 
 dev_dependencies:
   flutter_test:

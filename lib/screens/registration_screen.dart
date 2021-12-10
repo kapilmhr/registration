@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -193,6 +194,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   getInfo() async {
+    print(Platform.operatingSystem);
     if (Platform.isAndroid) {
       await Permission.phone.request();
       var status = await Permission.phone.status;
@@ -231,16 +233,72 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   insertData() async {
+    //intitialize database
     var db = await Database.getDatabase();
+
+    //check location permission and get user position
+    var position;
+    try{
+      position = await _determinePosition();
+    }catch(e){
+      print(e);
+    }
+
     var fName = firstNameController.value.text;
     var lName = lastNameController.value.text;
     var imei = imeiController.value.text;
     var dob = dateController.value.text;
     var email = emailController.value.text;
     var passport = passportController.value.text;
+    var latitude = position!=null?position.latitude:0.0;
+    var longitude = position!=null?position.longitude:0.0;
+
     var user = UserData(
-        null, fName, lName, imei, dob, "$email", "$passport", imageFile.path);
+        null,
+        fName,
+        lName,
+        imei,
+        dob,
+        "$email",
+        "$passport",
+        imageFile.path,
+        Platform.operatingSystem,
+        latitude,
+        longitude);
+
+    //insert in db
     db.insertPerson(user);
     Navigator.pop(context, user);
+  }
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
   }
 }

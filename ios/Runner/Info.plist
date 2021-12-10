@@ -41,5 +41,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>to capture image </string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>to access location of user while registering</string>
+	<key>NSLocationUsageDescription</key>
+	<string>access user location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>access user location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>aceess user location</string>
 </dict>
 </plist>
